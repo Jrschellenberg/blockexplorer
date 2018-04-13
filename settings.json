@@ -33,10 +33,11 @@
 
   // database settings (MongoDB)
   // THESE MUST MATCH ENVIRONMENT VARIABLES INSIDE docker-services.yml
+  // For DOCKER REQUIRES ADDRESS = mongo, SINCE they live in seperate containers. NOT LOCALHOST
   "dbsettings": {
-    "user": "iquidus",
-    "password": "3xp!0reR",
-    "database": "admin",
+    "user": "JustinCarly",
+    "password": "m23Sm48brJHPWwF9rd2lM0",
+    "database": "explorerdb",
     "address": "mongo",
     "port": 27017
   },
