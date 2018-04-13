@@ -26,15 +26,15 @@
   //     Cerulean, Cosmo, Cyborg, Darkly, Flatly, Journal, Lumen, Paper,
   //     Readable, Sandstone, Simplex, Slate, Spacelab, Superhero, United, Yeti
   // theme (see /public/themes for available themes)
-  "theme": "Cyborg",
+  "theme": "Darkly",
 
   // port to listen for requests on.
-  "port" : 3001,
+  "port" : 8080,
 
   // database settings (MongoDB)
   "dbsettings": {
-    "user": "iquidus",
-    "password": "3xp!0reR",
+    "user": "JustinCarly",
+    "password": "dTMqgaPaea@$^bIxaG91#5",
     "database": "explorerdb",
     "address": "localhost",
     "port": 27017
@@ -61,9 +61,9 @@
   // menu settings
   "display": {
     "api": true,
-    "markets": true,
+    "markets": false,
     "richlist": true,
-    "twitter": true,
+    "twitter": false,
     "facebook": false,
     "googleplus": false,
     "search": true,
