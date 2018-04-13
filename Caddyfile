@@ -1,0 +1,10 @@
+explorer.schellenberg.site {
+  tls Carling@nodes.exchange
+
+  log /var/log/caddy.log
+
+  proxy / production:8080 {
+    transparent
+  }
+  gzip
+}
