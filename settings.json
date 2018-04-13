@@ -32,6 +32,7 @@
   "port" : 8080,
 
   // database settings (MongoDB)
+  // THESE MUST MATCH ENVIRONMENT VARIABLES INSIDE docker-services.yml
   "dbsettings": {
     "user": "JustinCarly",
     "password": "dTMqgaPaea@$^bIxaG91#5",
