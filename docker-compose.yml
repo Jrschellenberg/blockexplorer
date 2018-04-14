@@ -15,7 +15,9 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock" 
     environment:
-      - CRON_MINUTE=* * * * * root docker exec ${CONTAINER_NAME} bash -c 'cd /usr/src/app && node scripts/sync.js index update >> ./cronLog 2>&1'
+      - CRON_MINUTE=* * * * * root docker exec ${CONTAINER_NAME} bash -c 'cd /usr/src/app && node scripts/sync.js index update > ./cronUpdateLog 2>&1'
+      - CRON_TWO_MINUTE=*/2 * * * * root docker exec ${CONTAINER_NAME} bash -c 'cd /usr/src/app && node scripts/sync.js market > ./cronMarketLog 2>&1'
+      - CRON_FIVE_MINUTE=*/5 * * * * root docker exec ${CONTAINER_NAME} bash -c 'cd /usr/src/app && node scripts/peers.js > ./cronPeersLog 2>&1'
 networks:
   default:
     external:
