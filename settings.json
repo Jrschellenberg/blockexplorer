@@ -34,8 +34,8 @@
   // database settings (MongoDB)
   // THESE MUST MATCH ENVIRONMENT VARIABLES INSIDE docker-services.yml
   "dbsettings": {
-    "user": "iquidus",
-    "password": "3xp!0reR",
+    "user": "JustinCarly",
+    "password": "m23Sm48brJHPWwF9rd2lM0",
     "database": "admin",
     "address": "mongo",
     "port": 27017
