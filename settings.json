@@ -37,7 +37,7 @@
   "dbsettings": {
     "user": "JustinCarly",
     "password": "m23Sm48brJHPWwF9rd2lM0",
-    "database": "explorerdb",
+    "database": "admin",
     "address": "mongo",
     "port": 27017
   },

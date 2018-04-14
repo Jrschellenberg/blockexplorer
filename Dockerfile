@@ -4,4 +4,6 @@ COPY package*.json ./
 RUN npm install --production
 COPY . .
 EXPOSE ${PORT}
-CMD [ "npm", "start" ]
+
+# Run the command on container startup
+CMD npm start

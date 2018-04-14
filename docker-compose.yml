@@ -7,7 +7,15 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=${PORT}
-      - CONTAINER_NAME=${CONTAINER_NAME}
+      - CONTAINER_NAME=${CONTAINER_NAME}  
+  cron:
+    build: ./cron/.
+    depends_on:
+      - web
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock" 
+    environment:
+      - CRON_MINUTE=* * * * * root docker exec ${CONTAINER_NAME} bash -c 'cd /usr/src/app && node scripts/sync.js index update >> ./cronLog 2>&1'
 networks:
   default:
     external:
