@@ -1,0 +1,11 @@
+version: "2"
+services:
+  coin:
+    container_name: zencash
+    restart: always
+    build: .
+    volumes:
+      - "./zencash/zen:/mnt/zen/"
+      - "./zencash/zcash-params:/mnt/zcash-params"
+      - "./zencash/.zen:/root/.zen"
+      - "./test/:/root/"
