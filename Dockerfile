@@ -33,14 +33,14 @@ ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 RUN node -v
 RUN npm -v
 
-# Begin coin dependencies installation...
+# Begin coin dependencies installation..
 RUN apt-get update \
-    && apt-get install software-properties-common pwgen nano git unzip \
-    && apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils \   
-    && apt-get install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev \   
-    && add-apt-repository ppa:bitcoin/bitcoin \   
+    && apt-get install software-properties-common pwgen nano git unzip -y \
+    && apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils -y \   
+    && apt-get install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev  -y \   
+    && add-apt-repository ppa:bitcoin/bitcoin -y \   
     && apt-get update \   
-    && apt-get install libdb4.8-dev libdb4.8++-dev
+    && apt-get install libdb4.8-dev libdb4.8++-dev -y
 
 
 COPY package*.json ./
