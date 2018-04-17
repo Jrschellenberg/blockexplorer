@@ -33,16 +33,15 @@ ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 RUN node -v
 RUN npm -v
 
+# Begin coin dependencies installation...
+RUN sudo apt-get update && \
+    && apt-get install software-properties-common pwgen nano git unzip \
+    && apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils \   
+    && apt-get install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev \   
+    && add-apt-repository ppa:bitcoin/bitcoin \   
+    && apt-get update \   
+    && apt-get install libdb4.8-dev libdb4.8++-dev
 
-#RUN apt-get update && apt-get install sudo -y && apt-get install curl -y
-
-#RUN sudo apt-get update \
- #   && sudo apt-get install build-essential libssl-dev -y \
-  #  && curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh -o install_nvm.sh \
- #   && sudo bash install_nvm.sh
-
-#RUN /bin/bash -c source ~/.profile
-#RUN nvm install 8.9.4 && nvm use 8.9.4
 
 COPY package*.json ./
 COPY . .
