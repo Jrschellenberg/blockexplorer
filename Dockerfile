@@ -43,21 +43,9 @@ RUN apt-get update \
     && apt-get install libdb4.8-dev libdb4.8++-dev -y
 
 # Begin build coin    
-RUN apt-get install ufw
-
-RUN fallocate -l 1500M /mnt/1500MB.swap \
-    && dd if=/dev/zero of=/mnt/1500MB.swap bs=1024 count=1572864 \
-    && mkswap /mnt/1500MB.swap \
-    && swapon /mnt/1500MB.swap \
-    && chmod 600 /mnt/1500MB.swap \
-    && echo '/mnt/1500MB.swap  none  swap  sw 0  0' >> /etc/fstab
+RUN apt-get install ufw -y && apt-get install sudo -y && apt-get install wget -y
 
 # Configure Ports
-RUN ufw allow 22/tcp \
-    && ufw limit 22/tcp \
-    && ufw allow 5500/tcp \
-    && ufw logging on \
-    && ufw --force enable
   
 # Install Coin  
 RUN apt-get install libzmq3-dev libminiupnpc-dev -y \
@@ -65,15 +53,13 @@ RUN apt-get install libzmq3-dev libminiupnpc-dev -y \
     && unzip shekel-Ubuntu16.04-1.3.0.zip \
     && rm shekel-Ubuntu16.04-1.3.0.zip \
     && chmod +x shekel-cli shekeld \
-    && mv shekel-cli shekeld /usr/local/bin/ \
-    && cd .. \
-    && shekeld
+    && mv shekel-cli shekeld /usr/local/bin/
 
 
 COPY package*.json ./
 COPY . .
 RUN npm install --production
-EXPOSE ${PORT}
+EXPOSE ${PORT} 22 5500
 
 # Run the command on container startup
 CMD npm start
