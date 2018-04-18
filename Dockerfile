@@ -13,7 +13,7 @@ RUN apt-get update \
 
 # nvm environment variables
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 8.9.4
+ENV NODE_VERSION 4.2.6
 
 # install nvm
 # https://github.com/creationix/nvm#install-script
@@ -55,11 +55,24 @@ RUN apt-get install libzmq3-dev libminiupnpc-dev -y \
     && chmod +x shekel-cli shekeld \
     && mv shekel-cli shekeld /usr/local/bin/
 
+# Create .conf file
+RUN USERNAME=$(pwgen -s 16 1) \
+    && PASSWORD=$(pwgen -s 64 1) \
+    && mkdir ~/tmpp \
+   # && rm ~/.shekel/shekel.conf \
+    && touch ~/tmpp/shekel.conf \
+    && echo "server=1" >> ~/tmpp/shekel.conf \
+    && echo "rpcuser=JustinCarly" >> ~/tmpp/shekel.conf \
+    && echo "rpcpassword=Pass123pass" >> ~/tmpp/shekel.conf \
+    && echo "rpcallowip=127.0.0.1" >> ~/tmpp/shekel.conf \
+    && echo "txindex=1" >> ~/tmpp/shekel.conf  
+
 
 COPY package*.json ./
 COPY . .
+
 RUN npm install --production
-EXPOSE ${PORT} 22 5500
+EXPOSE ${PORT}
 
 # Run the command on container startup
-CMD npm start
+CMD mv ~/tmpp/shekel.conf ~/.shekel/ && shekeld -daemon -reindex -txindex && npm start
