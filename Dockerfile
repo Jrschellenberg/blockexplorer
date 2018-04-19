@@ -55,6 +55,11 @@ RUN apt-get install libzmq3-dev libminiupnpc-dev -y \
     && chmod +x shekel-cli shekeld \
     && mv shekel-cli shekeld /usr/local/bin/
 
+# Extra packages required for kerboeroes
+RUN apt-get update && apt-get install python2.7 -y \
+    && ln -s /usr/bin/python2.7 /usr/bin/python \
+    && apt-get install libkrb5-dev -y
+
 # Create .conf file
 RUN USERNAME=$(pwgen -s 16 1) \
     && PASSWORD=$(pwgen -s 64 1) \
@@ -65,14 +70,18 @@ RUN USERNAME=$(pwgen -s 16 1) \
     && echo "rpcuser=JustinCarly" >> ~/tmpp/shekel.conf \
     && echo "rpcpassword=Pass123pass" >> ~/tmpp/shekel.conf \
     && echo "rpcallowip=127.0.0.1" >> ~/tmpp/shekel.conf \
-    && echo "txindex=1" >> ~/tmpp/shekel.conf  
+    && echo "txindex=1" >> ~/tmpp/shekel.conf \
+    && echo "addnode=45.32.162.242" >> ~/tmpp/shekel.conf \
+    && echo "addnode=89.40.6.112" >> ~/tmpp/shekel.conf \
+    && echo "addnode=144.76.82.172" >> ~/tmpp/shekel.conf 
 
 
 COPY package*.json ./
 COPY . .
 
+RUN npm install forever -g
 RUN npm install --production
 EXPOSE ${PORT}
 
 # Run the command on container startup
-CMD mv ~/tmpp/shekel.conf ~/.shekel/ && shekeld -daemon -reindex -txindex && npm start
+CMD mv ~/tmpp/shekel.conf ~/.shekel/ && shekeld -daemon -reindex -txindex && sleep infinity
