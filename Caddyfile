@@ -3,7 +3,7 @@ explorer.schellenberg.site {
 
   log /var/log/caddy.log
 
-  proxy / explorer:8080 {
+  proxy / explorer:3001 {
     transparent
   }
   gzip

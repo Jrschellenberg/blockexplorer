@@ -17,13 +17,8 @@ ENV NODE_VERSION 4.2.6
 
 # install nvm
 # https://github.com/creationix/nvm#install-script
-RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
-
-# install node and npm
-RUN source $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
+RUN apt-get update && apt-get install nodejs-legacy -y \
+    && apt-get install npm -y
 
 # add node and npm to path so the commands are available
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
@@ -55,11 +50,6 @@ RUN apt-get install libzmq3-dev libminiupnpc-dev -y \
     && chmod +x shekel-cli shekeld \
     && mv shekel-cli shekeld /usr/local/bin/
 
-# Extra packages required for kerboeroes
-RUN apt-get update && apt-get install python2.7 -y \
-    && ln -s /usr/bin/python2.7 /usr/bin/python \
-    && apt-get install libkrb5-dev -y
-
 # Create .conf file
 RUN USERNAME=$(pwgen -s 16 1) \
     && PASSWORD=$(pwgen -s 64 1) \
@@ -70,10 +60,18 @@ RUN USERNAME=$(pwgen -s 16 1) \
     && echo "rpcuser=JustinCarly" >> ~/tmpp/shekel.conf \
     && echo "rpcpassword=Pass123pass" >> ~/tmpp/shekel.conf \
     && echo "rpcallowip=127.0.0.1" >> ~/tmpp/shekel.conf \
+    && echo "rpcport=4400" >> ~/tmpp/shekel.conf \
+    && echo "addressindex=1" >> ~/tmpp/shekel.conf \
+    && echo "spentindex=1" >> ~/tmpp/shekel.conf \
     && echo "txindex=1" >> ~/tmpp/shekel.conf \
     && echo "addnode=45.32.162.242" >> ~/tmpp/shekel.conf \
     && echo "addnode=89.40.6.112" >> ~/tmpp/shekel.conf \
     && echo "addnode=144.76.82.172" >> ~/tmpp/shekel.conf 
+
+
+# Extra packages required for kerboeroes
+RUN apt-get update && apt-get install python2.7 -y \
+    && apt-get install libkrb5-dev -y
 
 
 COPY package*.json ./
@@ -84,4 +82,5 @@ RUN npm install --production
 EXPOSE ${PORT}
 
 # Run the command on container startup
-CMD mv ~/tmpp/shekel.conf ~/.shekel/ && shekeld -daemon -reindex -txindex && sleep infinity
+CMD mv ~/tmpp/shekel.conf ~/.shekel/ && shekeld -daemon -reindex -txindex \
+    && sleep infinity

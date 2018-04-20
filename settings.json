@@ -5,9 +5,9 @@
 */
 {
   // name your instance!
-  "title": "IQUIDUS",
+  "title": "Shekel Block Explorer",
 
-  "address": "127.0.0.1:8003",
+  "address": "localhost:3001",
 
   // coin name
   "coin": "Shekel",
@@ -29,7 +29,7 @@
   "theme": "Cerulean",
 
   // port to listen for requests on.
-  "port" : 8080,
+  "port" : 3001,
 
   // database settings (MongoDB)
   // THESE MUST MATCH ENVIRONMENT VARIABLES INSIDE docker-services.yml
@@ -48,7 +48,7 @@
   // wallet settings
   "wallet": {
     "host": "localhost",
-    "port": 5500,
+    "port": 4400,
     "user": "JustinCarly",
     "pass": "Pass123pass"
   },
