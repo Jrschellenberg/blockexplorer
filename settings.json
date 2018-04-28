@@ -37,7 +37,7 @@
     "user": "JustinCarly",
     "password": "m23Sm48brJHPWwF9rd2lM0",
     "database": "admin",
-    "address": "mongo",
+    "address": "mongoShekel",
     "port": 27017
   },
 
