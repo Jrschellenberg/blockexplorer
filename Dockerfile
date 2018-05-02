@@ -75,10 +75,15 @@ RUN apt-get update && apt-get install python2.7 -y \
 
 
 COPY package*.json ./
+COPY bash/buildSettings.sh /usr/local/bin/
 COPY . .
 
 RUN npm install forever -g
 RUN npm install --production
+
+RUN chmod +x /usr/local/bin/buildSettings.sh
+RUN buildSettings
+
 EXPOSE ${PORT}
 
 # Run the command on container startup

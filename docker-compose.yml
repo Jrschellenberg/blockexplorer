@@ -6,9 +6,25 @@ services:
     build: .
     environment:
       - NODE_ENV=production
+      - WORKING_PATH=${WORKING_PATH}
+      - COIN=${COIN}
+      - SYMBOL=${SYMBOL}
+      - THEME=${THEME}
       - PORT=${PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+      - WALLET_USER=${WALLET_USER}
+      - WALLET_PASSWORD=${WALLET_PASSWORD}
       - WALLET_PORT=${WALLET_PORT}
+      - BLOCKINDEX=${BLOCKINDEX}
+      - BLOCKHASH=${BLOCKHASH}
+      - TXHASH=${TXHASH}  
+      - ADDRESS=${ADDRESS}
+      - GENESIS_TX=${GENESIS_TX}
+      - GENESIS_BLOCK=${GENESIS_BLOCK}
       - CONTAINER_NAME=${CONTAINER_NAME}
+      - DB_CONTAINER_NAME=${DB_CONTAINER_NAME} 
     volumes:
       - "./coins/.shekel:/root/.shekel"
     depends_on:
