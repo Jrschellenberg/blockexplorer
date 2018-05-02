@@ -1,4 +1,6 @@
-CONTAINER_NAME=explorer
+CRON_CONTAINER_NAME=shekelCron
+CONTAINER_NAME=shekel
 # deploy Script
 export CONTAINER_NAME=$CONTAINER_NAME
-docker-compose -p cron up -d --build
+export CRON_CONTAINER_NAME=$CRON_CONTAINER_NAME
+docker-compose -p $CRON_CONTAINER_NAME up -d --build

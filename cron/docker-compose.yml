@@ -1,7 +1,7 @@
 version: "2"
 services:
   cron:
-    container_name: cron
+    container_name: ${CRON_CONTAINER_NAME}
     build: .
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock" 
