@@ -57,7 +57,7 @@ echo "    \"txhash\": \"${TXHASH}\", " >> ${WRITE_PATH}
 echo "    \"address\": \"${ADDRESS}\" " >> ${WRITE_PATH}
 echo "  }, " >> ${WRITE_PATH}
 
-echo "  \"markets\": { >> ${WRITE_PATH}
+echo "  \"markets\": { ">> ${WRITE_PATH}
 echo "    \"coin\": \"JBS\", " >> ${WRITE_PATH}
 echo "    \"exchange\": \"BTC\", " >> ${WRITE_PATH}
 echo "    \"enabled\": [\"bittrex\"], " >> ${WRITE_PATH}
@@ -68,7 +68,7 @@ echo "  }, " >> ${WRITE_PATH}
 
 echo "  \"richlist\": { " >> ${WRITE_PATH}
 echo "    \"distribution\": true, " >> ${WRITE_PATH}
-echo "    \"received\": true,  >> ${WRITE_PATH}
+echo "    \"received\": true, " >> ${WRITE_PATH}
 echo "    \"balance\": true " >> ${WRITE_PATH}
 echo "  }, " >> ${WRITE_PATH}
 
