@@ -75,17 +75,17 @@ RUN apt-get update && apt-get install python2.7 -y \
 
 
 COPY package*.json ./
-COPY bash/buildSettings.sh /usr/local/bin/
+COPY bash/buildSettings.sh /buildSettings.sh
 COPY . .
 
 RUN npm install forever -g
 RUN npm install --production
 
-RUN chmod +x /usr/local/bin/buildSettings.sh
-RUN buildSettings
+RUN chmod +x /buildSettings.sh
+
 
 EXPOSE ${PORT}
 
 # Run the command on container startup
-CMD mv ~/tmpp/shekel.conf ~/.shekel/ && shekeld -daemon -reindex -txindex \
+CMD /buildSettings.sh && mv ~/tmpp/shekel.conf ~/.shekel/ && shekeld -daemon -reindex -txindex \
     && sleep infinity
