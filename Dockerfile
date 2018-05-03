@@ -87,8 +87,8 @@ COPY package*.json ./
 COPY bash/buildSettings.sh /buildSettings.sh
 COPY . .
 
-#RUN npm install forever -g
-#RUN npm install --production
+RUN npm install forever -g
+RUN npm install --production
 
 RUN chmod +x /buildSettings.sh
 
