@@ -4,6 +4,10 @@ WORKING_PATH=/usr/src/app
 
 COIN=Shekel
 SYMBOL=JEW
+
+DAEMON_NAME=${COIN,,}
+CONF_FILE_NAME=${DAEMON_NAME}.conf
+
 # Uses bootswatch themes (http://bootswatch.com/)
 #Valid options:
 #    Cerulean, Cosmo, Cyborg, Darkly, Flatly, Journal, Lumen, Paper,
@@ -19,6 +23,8 @@ DB_DATABASE=admin
 WALLET_USER=JustinCarly
 WALLET_PASSWORD=Pass123pass
 WALLET_PORT=4400
+WALLET_NODE_1=45.32.162.242
+WALLET_NODE_2=89.40.6.112
 
 
 #BlockExplorer API Variables
@@ -40,6 +46,10 @@ export WORKING_PATH=$WORKING_PATH
 
 export COIN=$COIN
 export SYMBOL=$SYMBOL
+
+export DAEMON_NAME=DAEMON_NAME
+export CONF_FILE_NAME=$CONF_FILE_NAME
+
 export THEME=$THEME
 
 export DB_USER=$DB_USER
@@ -50,6 +60,8 @@ export DB_DATABASE=$DB_DATABASE
 export WALLET_USER=$WALLET_USER
 export WALLET_PASSWORD=$WALLET_PASSWORD
 export WALLET_PORT=$WALLET_PORT
+export WALLET_NODE_1=$WALLET_NODE_1
+export WALLET_NODE_2=$WALLET_NODE_2
 
 
 #BlockExplorer API Variables

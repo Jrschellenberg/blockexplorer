@@ -54,19 +54,17 @@ RUN apt-get install libzmq3-dev libminiupnpc-dev -y \
 RUN USERNAME=$(pwgen -s 16 1) \
     && PASSWORD=$(pwgen -s 64 1) \
     && mkdir ~/tmpp \
-   # && rm ~/.shekel/shekel.conf \
-    && touch ~/tmpp/shekel.conf \
-    && echo "server=1" >> ~/tmpp/shekel.conf \
-    && echo "rpcuser=JustinCarly" >> ~/tmpp/shekel.conf \
-    && echo "rpcpassword=Pass123pass" >> ~/tmpp/shekel.conf \
-    && echo "rpcallowip=127.0.0.1" >> ~/tmpp/shekel.conf \
-    && echo "rpcport=4400" >> ~/tmpp/shekel.conf \
-    && echo "addressindex=1" >> ~/tmpp/shekel.conf \
-    && echo "spentindex=1" >> ~/tmpp/shekel.conf \
-    && echo "txindex=1" >> ~/tmpp/shekel.conf \
-    && echo "addnode=45.32.162.242" >> ~/tmpp/shekel.conf \
-    && echo "addnode=89.40.6.112" >> ~/tmpp/shekel.conf \
-    && echo "addnode=144.76.82.172" >> ~/tmpp/shekel.conf 
+    && touch ~/tmpp/${CONF_FILE_NAME} \
+    && echo "server=1" >> ~/tmpp/${CONF_FILE_NAME} \
+    && echo "rpcuser=${WALLET_USER}" >> ~/tmpp/${CONF_FILE_NAME} \
+    && echo "rpcpassword=${WALLET_PASSWORD}" >> ~/tmpp/${CONF_FILE_NAME} \
+    && echo "rpcallowip=127.0.0.1" >> ~/tmpp/${CONF_FILE_NAME} \
+    && echo "rpcport=${WALLET_PORT}" >> ~/tmpp/${CONF_FILE_NAME} \
+    && echo "addressindex=1" >> ~/tmpp/${CONF_FILE_NAME} \
+    && echo "spentindex=1" >> ~/tmpp/${CONF_FILE_NAME} \
+    && echo "txindex=1" >> ~/tmpp/${CONF_FILE_NAME} \
+    && echo "addnode=${WALLET_NODE_1}" >> ~/tmpp/${CONF_FILE_NAME} \
+    && echo "addnode=${WALLET_NODE_2}" >> ~/tmpp/${CONF_FILE_NAME}
 
 
 # Extra packages required for kerboeroes
@@ -78,8 +76,8 @@ COPY package*.json ./
 COPY bash/buildSettings.sh /buildSettings.sh
 COPY . .
 
-RUN npm install forever -g
-RUN npm install --production
+#RUN npm install forever -g
+#RUN npm install --production
 
 RUN chmod +x /buildSettings.sh
 
@@ -87,5 +85,5 @@ RUN chmod +x /buildSettings.sh
 EXPOSE ${PORT}
 
 # Run the command on container startup
-CMD /buildSettings.sh && mv ~/tmpp/shekel.conf ~/.shekel/ && shekeld -daemon -reindex -txindex \
+CMD /buildSettings.sh && mv ~/tmpp/${CONF_FILE_NAME} ~/.${DAEMON_NAME}/ && ${DAEMON_NAME}d -daemon -reindex -txindex \
     && sleep infinity

@@ -9,6 +9,8 @@ services:
       - WORKING_PATH=${WORKING_PATH}
       - COIN=${COIN}
       - SYMBOL=${SYMBOL}
+      - DAEMON_NAME=${DAEMON_NAME}  
+      - CONF_FILE_NAME=${CONF_FILE_NAME}
       - THEME=${THEME}
       - PORT=${PORT}
       - DB_USER=${DB_USER}
@@ -17,6 +19,8 @@ services:
       - WALLET_USER=${WALLET_USER}
       - WALLET_PASSWORD=${WALLET_PASSWORD}
       - WALLET_PORT=${WALLET_PORT}
+      - WALLET_NODE_1=${WALLET_NODE_1}
+      - WALLET_NODE_2=${WALLET_NODE_2}
       - BLOCKINDEX=${BLOCKINDEX}
       - BLOCKHASH=${BLOCKHASH}
       - TXHASH=${TXHASH}  
