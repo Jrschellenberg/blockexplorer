@@ -4,6 +4,17 @@ services:
     container_name: ${CONTAINER_NAME}
     restart: always
     build: .
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - WORKING_PATH=${WORKING_PATH}
+        - DAEMON_NAME=${DAEMON_NAME}
+        - CONF_FILE_NAME=${CONF_FILE_NAME}
+        - WALLET_USER=${WALLET_USER}
+        - WALLET_PASSWORD=${WALLET_PASSWORD}
+        - WALLET_PORT=${WALLET_PORT}
+        - WALLET_NODE_1=${WALLET_NODE_1}
+        - WALLET_NODE_2=${WALLET_NODE_2}
     environment:
       - NODE_ENV=production
       - WORKING_PATH=${WORKING_PATH}

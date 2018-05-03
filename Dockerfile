@@ -1,6 +1,17 @@
 FROM ubuntu:16.04
-WORKDIR /usr/src/app
+ARG WORKING_PATH
+ARG DAEMON_NAME
+ARG CONF_FILE_NAME
+ARG WALLET_USER
+ARG WALLET_PASSWORD
+ARG WALLET_PORT
+ARG WALLET_NODE_1
+ARG WALLET_NODE_2
+
+WORKDIR $WORKING_PATH
 # Replace shell with bash so we can source files
+
+#RUN echo $WORKING_PATH
 
 # replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -32,7 +43,7 @@ RUN npm -v
 RUN apt-get update \
     && apt-get install software-properties-common pwgen nano git unzip -y \
     && apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils -y \   
-    && apt-get install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev  -y \   
+    && apt-get install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev -y \   
     && add-apt-repository ppa:bitcoin/bitcoin -y \   
     && apt-get update \   
     && apt-get install libdb4.8-dev libdb4.8++-dev -y
