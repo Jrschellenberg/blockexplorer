@@ -78,5 +78,10 @@ export CONTAINER_NAME=$CONTAINER_NAME
 export DB_CONTAINER_NAME=$DB_CONTAINER_NAME
 export PORT=$PORT
 
+#Create coins directory if not exist!
+if [ ! -d ./coins/.${DAEMON_NAME} ]; then
+        mkdir ./coins/.${DAEMON_NAME}
+fi
+
 # deploy Script
 docker-compose -p $CONTAINER_NAME up --build -d

@@ -41,7 +41,7 @@ services:
       - CONTAINER_NAME=${CONTAINER_NAME}
       - DB_CONTAINER_NAME=${DB_CONTAINER_NAME} 
     volumes:
-      - "./coins/.shekel:/root/.shekel"
+      - "./coins/.${DAEMON_NAME}:/root/.${DAEMON_NAME}"
     depends_on:
       - mongo
     deploy:
