@@ -3,7 +3,7 @@ services:
   web:
     container_name: ${CONTAINER_NAME}
     restart: always
-    build: .
+    build:
       context: .
       dockerfile: ./Dockerfile
       args:
